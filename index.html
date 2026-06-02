@@ -281,8 +281,8 @@
   }
   .section-label::before { content: ''; display: inline-block; width: 32px; height: 2px; background: var(--sky); }
   .hero h1 {
-    font-size: clamp(2rem, 4.5vw, 3.4rem); font-weight: 800;
-    line-height: 1.15; letter-spacing: -0.02em; margin-bottom: 1.5rem;
+    font-size: clamp(1.75rem, 3.6vw, 2.7rem); font-weight: 800;
+    line-height: 1.2; letter-spacing: -0.025em; margin-bottom: 1.5rem;
     color: var(--text-white);
   }
   .hero h1 .accent { color: var(--sky); text-shadow: 0 0 30px rgba(0, 185, 255, 0.35); }
@@ -387,6 +387,10 @@
 
   /* ═══ MINDSET GRIDS ═══════════════════════════════════════════ */
   .mindset-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 0.85rem; margin: 1.5rem 0; }
+  /* 5-card variant: 3 above (2 cols each) + 2 below (3 cols each) on a 6-col grid */
+  .mindset-grid--five { grid-template-columns: repeat(6, 1fr); }
+  .mindset-grid--five .mindset-card:nth-child(-n+3) { grid-column: span 2; }
+  .mindset-grid--five .mindset-card:nth-child(n+4) { grid-column: span 3; }
   .mindset-card {
     background: var(--bg-card); border: 1px solid var(--border);
     border-radius: 12px; padding: 1.15rem 1.4rem;
@@ -624,6 +628,9 @@
     .closing .to { font-size: 1.2rem; }
     .cta-band { padding: 3.25rem 5%; }
     .mindset-grid { grid-template-columns: 1fr; }
+    .mindset-grid--five { grid-template-columns: 1fr; }
+    .mindset-grid--five .mindset-card:nth-child(-n+3),
+    .mindset-grid--five .mindset-card:nth-child(n+4) { grid-column: span 1; }
     .framework-intro { padding: 1.75rem 1.85rem; }
     .framework-title { font-size: 1.4rem; }
     .framework-step { padding: 1.5rem 1.75rem; gap: 1.25rem; }
@@ -638,7 +645,7 @@
   @media (max-width: 480px) {
     .hero { padding: 3rem 4% 2.5rem; }
     .article { padding: 2.5rem 4%; }
-    .hero h1 { font-size: 1.75rem; }
+    .hero h1 { font-size: 1.5rem; }
     .hero-sub { font-size: 1rem; }
     h2 { font-size: 1.35rem; padding-left: 0.85rem; }
     h2::before { width: 3px; }
@@ -710,7 +717,7 @@
       <h2>Which Leadership Mindsets Are Becoming Outdated?</h2>
       <p>Throughout our professional journeys, many of us build confidence through experience, achievements, relationships, and the value we contribute. These are real and earned. But the changing world reminds us that leadership can no longer rest only on:</p>
 
-      <div class="mindset-grid">
+      <div class="mindset-grid mindset-grid--five">
         <div class="mindset-card old"><div class="mindset-icon">✕</div><p>"I know everything."</p></div>
         <div class="mindset-card old"><div class="mindset-icon">✕</div><p>"I am critical to the organization."</p></div>
         <div class="mindset-card old"><div class="mindset-icon">✕</div><p>"I am irreplaceable."</p></div>
@@ -881,6 +888,11 @@
 </section>
 
 <!-- ═══ FOOTER ═══════════════════════════════════════════════════ -->
+<footer>
+  <div class="brand">© 2026 Sails Software Inc. — Michigan</div>
+  <div class="mono">Think Twice, Code Once</div>
+</footer>
+
 <script>
   window.addEventListener('scroll', () => {
     const pct = (window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100;
